@@ -1,5 +1,6 @@
 package com.example.atendialuno;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // teste de login
 
+
+            }
+        });
+
+        btCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, TelaCadastro.class);
+                startActivity(i);
 
             }
         });
