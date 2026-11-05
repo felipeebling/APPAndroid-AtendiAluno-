@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                logar();
                 // teste de login
 
 
@@ -49,8 +50,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logar(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String req = "http://localhost/bancoapi/TrabalhoProgAndroidBancoAPI/consultatudo.php?acao=consultar_professores";
+                manipulahttp m = new manipulahttp();
+                String teste = m.requisitaservico(req);
 
-
-
+                System.out.println(teste);
+            }
+        }).start();
     }
 }
