@@ -1,6 +1,7 @@
 package com.example.atendialuno;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -9,7 +10,7 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class TelaPrincipal extends AppCompatActivity {
-
+ TextView txNome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +21,17 @@ public class TelaPrincipal extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        String nomeProfessor ="";
+        String idProfessor = "";
+
+         nomeProfessor = getIntent().getStringExtra("nome");
+         idProfessor = getIntent().getStringExtra("id");
+
+        txNome = findViewById(R.id.tvNome);
+        String frase = "Olá " + nomeProfessor;
+        txNome.setText(frase);
+
+
+
     }
 }
