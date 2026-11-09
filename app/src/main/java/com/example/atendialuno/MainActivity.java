@@ -135,14 +135,10 @@ public class MainActivity extends AppCompatActivity {
                             nome = json.getString("nome");
                             System.out.println("id= " +id +"\n" + "nome= " + nome);
 
-                        } else if (status.equals("erro")) {
-                            System.out.println("erro usuariio ivnaldio");
 
-                        }
 
                         runOnUiThread(() -> {
-                            // Aqui você pode abrir a próxima tela
-                            // usando o ID e o nome do professor
+
 
                             i.putExtra("id", id);
                             i.putExtra("nome", nome);
@@ -151,9 +147,18 @@ public class MainActivity extends AppCompatActivity {
 
                         });
 
+                        } else if (status.equals("erro")) {
+
+                            runOnUiThread(() -> {
+                                Toast.makeText(MainActivity.this, "Erro Usuario invalido", Toast.LENGTH_SHORT).show();
+                            });
+
+
+                        }
+
                     } else {
                         //erro
-                        Toast.makeText(this, "erro na requisção veio vazia", Toast.LENGTH_SHORT).show();
+                        System.out.println("ERRo requisi~ção");
                     }
 
                 } catch (Exception e) {

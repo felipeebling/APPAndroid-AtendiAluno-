@@ -34,7 +34,7 @@ public class TelaCadastro extends AppCompatActivity {
             return insets;
         });
         nomeProfessor = findViewById(R.id.edNomeProfessor);
-        emailProfessor = findViewById(R.id.edNomeProfessor);
+        emailProfessor = findViewById(R.id.edEmailProfessor);
         senhaProfessor = findViewById(R.id.edSenhaProfesssor);
 
 
@@ -48,7 +48,7 @@ public class TelaCadastro extends AppCompatActivity {
                     emailProfessor.getText().toString().isEmpty() ||
                     senhaProfessor.getText().toString().isEmpty()
                 ){
-                    Toast.makeText(TelaCadastro.this, "Campos vazios", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TelaCadastro.this, "Campos vazio", Toast.LENGTH_SHORT).show();
                 }else {
                     cadastrar(nomeProfessor.getText().toString(),emailProfessor.getText().toString()
                             ,senhaProfessor.getText().toString());
@@ -64,10 +64,7 @@ public class TelaCadastro extends AppCompatActivity {
     public void cadastrar(String nome, String email,String senha){
 
         String req = montarequisição(nome,email,senha);
-
-
-
-        new Thread(() -> {
+         new Thread(() -> {
             manipulahttp http = new manipulahttp();
             resposta = http.requisitaservico(req);
 
@@ -91,10 +88,14 @@ public class TelaCadastro extends AppCompatActivity {
                 @Override
                 public void run() {
                     if (cadastrou) {
-                        Toast.makeText(TelaCadastro.this, "Usuario criad", Toast.LENGTH_LONG).show();
+                        runOnUiThread(() -> {
+                            Toast.makeText(TelaCadastro.this, "Usuario Criado", Toast.LENGTH_SHORT).show();
+                        });
                         startActivity(i);
                     }else{
-                        Toast.makeText(TelaCadastro.this, "Erro", Toast.LENGTH_LONG).show();
+                        runOnUiThread(() -> {
+                            Toast.makeText(TelaCadastro.this, "ERRO", Toast.LENGTH_SHORT).show();
+                        });
                     }
                 }
             });
